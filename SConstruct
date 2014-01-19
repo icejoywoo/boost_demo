@@ -2,7 +2,7 @@ import os
 
 env = Environment(CC = "clang", CXX = "clang++", CXXFLAGS = "-Wall -g -O0")
 
-libs = ['pthread', 'boost_regex', 'boost_signals']
+libs = ['pthread', 'boost_regex', 'boost_signals', 'boost_thread-mt', 'boost_system']
 libs_path = []
 
 def simple_compile(dir):
@@ -18,3 +18,5 @@ simple_compile('src')
 simple_compile('ptr')
 simple_compile('function')
 simple_compile('signal')
+simple_compile('threads')
+simple_compile('asio')
