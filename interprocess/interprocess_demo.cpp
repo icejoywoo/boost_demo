@@ -24,9 +24,18 @@ int main() {
 	        boost::interprocess::read_write);
 	std::cout << std::hex << "0x" << region.get_address() << std::endl;
 	std::cout << std::dec << region.get_size() << std::endl;
+	int *i1 = static_cast<int*>(region.get_address());
+	*i1 = 99;
 	boost::interprocess::mapped_region region2(shdmem,
 	        boost::interprocess::read_only);
 	std::cout << std::hex << "0x" << region2.get_address() << std::endl;
 	std::cout << std::dec << region2.get_size() << std::endl;
+	int *i2 = static_cast<int*>(region2.get_address());
+	std::cout << *i2 << std::endl;
+
+	// 即使进程终止，共享内存还会一直存在，而不论共享内存的删除是否依赖底层操作系统
+	bool removed = boost::interprocess::shared_memory_object::remove(
+	        "Highscore");
+	std::cout << removed << std::endl;
 }
 
