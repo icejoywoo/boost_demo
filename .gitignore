@@ -1,0 +1,4 @@
+*.o
+.pydevproject
+.settings
+.sconsign.dblite
